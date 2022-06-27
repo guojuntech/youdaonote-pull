@@ -651,7 +651,8 @@ class YoudaoNotePull(object):
             image_path = self._get_new_image_path(image_url)
             if image_url == image_path:
                 continue
-            content = content.replace(image_url, image_path)
+            rel_path = os.path.relpath(image_path, os.path.dirname(file_path))
+            content = content.replace(image_url, rel_path)
 
         # 附件
         attach_name_and_url_list = REGEX_ATTACH.findall(content)
